@@ -1,0 +1,4 @@
+/api/build/
+/db/data/
+/api/.gradle/
+*.idea/
