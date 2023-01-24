@@ -1,7 +1,7 @@
 version: "3"
 services:
   app:
-      image: openjdk:19
+      image: eclipse-temurin:19-jdk-jammy
       container_name: app
       restart: always
       ports:
@@ -10,6 +10,7 @@ services:
       volumes:
         - ./api:/srv:cached
       working_dir: /srv
+      command: ./gradlew bootRun
   db:
     image: mysql:8.0.23
     platform: linux/x86_64
