@@ -12,6 +12,13 @@ data class RegisterBookRequest(
     val releaseDate: LocalDate,
 )
 
+data class UpdateBookRequest(
+    val id: Long,
+    val title: String?,
+    val author: String?,
+    val releaseDate: LocalDate?,
+)
+
 data class GetBookListResponse(val bookList: List<BookInfo>)
 data class GetBookDetailResponse(
     val id: Long,

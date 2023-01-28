@@ -8,6 +8,7 @@ import com.beatdjam.book.manager.infrastructure.database.mapper.*
 import com.beatdjam.book.manager.infrastructure.database.record.BookRecord
 import com.beatdjam.book.manager.infrastructure.database.record.BookWithRentalRecord
 import org.springframework.stereotype.Repository
+import java.time.LocalDate
 
 @Repository
 class BookRepositoryImpl(
@@ -24,6 +25,10 @@ class BookRepositoryImpl(
 
     override fun register(book: Book) {
         bookMapper.insert(toRecord(book))
+    }
+
+    override fun update(id: Long, title: String?, author: String?, releaseDate: LocalDate?) {
+        bookMapper.updateByPrimaryKeySelective(BookRecord(id, title, author, releaseDate))
     }
 
     private fun toRecord(model: Book): BookRecord {
