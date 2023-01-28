@@ -4,11 +4,11 @@
         "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
 <generatorConfiguration>
     <classPathEntry
-            location="/Users/beat/.gradle/caches/modules-2/files-2.1/mysql/mysql-connector-java/8.0.28/33678b1729d4f832b9e4bcb2d5bbd67940920a7a/mysql-connector-java-8.0.28.jar" />
+            location="/Users/beat/.gradle/caches/modules-2/files-2.1/mysql/mysql-connector-java/8.0.28/33678b1729d4f832b9e4bcb2d5bbd67940920a7a/mysql-connector-java-8.0.28.jar"/>
     <context id="MySQLTables" targetRuntime="MyBatis3Kotlin">
-        <plugin type="org.mybatis.generator.plugins.MapperAnnotationPlugin" />
+        <plugin type="org.mybatis.generator.plugins.MapperAnnotationPlugin"/>
         <commentGenerator>
-            <property name="suppressDate" value="true" />
+            <property name="suppressDate" value="true"/>
         </commentGenerator>
 
         <jdbcConnection
@@ -16,7 +16,7 @@
                 connectionURL="jdbc:mysql://127.0.0.1:3306/book_manager"
                 userId="root"
                 password="mysql">
-            <property name="nullCatalogMeansCurrent" value="true" />
+            <property name="nullCatalogMeansCurrent" value="true"/>
         </jdbcConnection>
 
         <javaTypeResolver>
@@ -35,7 +35,7 @@
 
         <table tableName="%">
             <columnOverride column="role_type" typeHandler="org.apache.ibatis.type.EnumTypeHandler"
-                            javaType="com.beatdjam.book.manager.domain.RoleType" />
+                            javaType="com.beatdjam.book.manager.domain.enum.RoleType"/>
         </table>
     </context>
 </generatorConfiguration>
