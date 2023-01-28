@@ -6,6 +6,7 @@ import com.beatdjam.book.manager.domain.model.Rental
 import com.beatdjam.book.manager.domain.repository.BookRepository
 import com.beatdjam.book.manager.infrastructure.database.mapper.BookWithRentalMapper
 import com.beatdjam.book.manager.infrastructure.database.mapper.select
+import com.beatdjam.book.manager.infrastructure.database.mapper.selectByPrimaryKey
 import com.beatdjam.book.manager.infrastructure.database.record.BookWithRentalRecord
 import org.springframework.stereotype.Repository
 
@@ -13,6 +14,10 @@ import org.springframework.stereotype.Repository
 class BookRepositoryImpl(private val bookWithRentalMapper: BookWithRentalMapper) : BookRepository {
     override fun findAllWithRental(): List<BookWithRental> {
         return bookWithRentalMapper.select().map { toModel(it) }
+    }
+
+    override fun findWithRental(id: Long): BookWithRental? {
+        return bookWithRentalMapper.selectByPrimaryKey(id)?.let { toModel(it) }
     }
 
     private fun toModel(record: BookWithRentalRecord): BookWithRental {
