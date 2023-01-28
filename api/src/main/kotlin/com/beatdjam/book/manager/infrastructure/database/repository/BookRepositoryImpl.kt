@@ -4,20 +4,30 @@ import com.beatdjam.book.manager.domain.model.Book
 import com.beatdjam.book.manager.domain.model.BookWithRental
 import com.beatdjam.book.manager.domain.model.Rental
 import com.beatdjam.book.manager.domain.repository.BookRepository
-import com.beatdjam.book.manager.infrastructure.database.mapper.BookWithRentalMapper
-import com.beatdjam.book.manager.infrastructure.database.mapper.select
-import com.beatdjam.book.manager.infrastructure.database.mapper.selectByPrimaryKey
+import com.beatdjam.book.manager.infrastructure.database.mapper.*
+import com.beatdjam.book.manager.infrastructure.database.record.BookRecord
 import com.beatdjam.book.manager.infrastructure.database.record.BookWithRentalRecord
 import org.springframework.stereotype.Repository
 
 @Repository
-class BookRepositoryImpl(private val bookWithRentalMapper: BookWithRentalMapper) : BookRepository {
+class BookRepositoryImpl(
+    private val bookWithRentalMapper: BookWithRentalMapper,
+    private val bookMapper: BookMapper
+) : BookRepository {
     override fun findAllWithRental(): List<BookWithRental> {
         return bookWithRentalMapper.select().map { toModel(it) }
     }
 
     override fun findWithRental(id: Long): BookWithRental? {
         return bookWithRentalMapper.selectByPrimaryKey(id)?.let { toModel(it) }
+    }
+
+    override fun register(book: Book) {
+        bookMapper.insert(toRecord(book))
+    }
+
+    private fun toRecord(model: Book): BookRecord {
+        return BookRecord(model.id, model.title, model.author, model.releaseDate)
     }
 
     private fun toModel(record: BookWithRentalRecord): BookWithRental {

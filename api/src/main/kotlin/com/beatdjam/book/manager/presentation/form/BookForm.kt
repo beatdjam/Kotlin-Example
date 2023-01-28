@@ -5,6 +5,13 @@ import com.beatdjam.book.manager.domain.model.Rental
 import java.time.LocalDate
 import java.time.LocalDateTime
 
+data class RegisterBookRequest(
+    val id: Long,
+    val title: String,
+    val author: String,
+    val releaseDate: LocalDate,
+)
+
 data class GetBookListResponse(val bookList: List<BookInfo>)
 data class GetBookDetailResponse(
     val id: Long,
