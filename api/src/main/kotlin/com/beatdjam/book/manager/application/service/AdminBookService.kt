@@ -21,4 +21,10 @@ class AdminBookService(
         bookRepository.findWithRental(bookId) ?: throw IllegalArgumentException("Not Exist: $bookId")
         bookRepository.update(bookId, title, author, releaseDate)
     }
+
+    @Transactional
+    fun delete(bookId: Long) {
+        bookRepository.findWithRental(bookId) ?: throw IllegalArgumentException("Not Exist: $bookId")
+        bookRepository.delete(bookId)
+    }
 }

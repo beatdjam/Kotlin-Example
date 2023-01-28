@@ -31,6 +31,10 @@ class BookRepositoryImpl(
         bookMapper.updateByPrimaryKeySelective(BookRecord(id, title, author, releaseDate))
     }
 
+    override fun delete(id: Long) {
+        bookMapper.deleteByPrimaryKey(id)
+    }
+
     private fun toRecord(model: Book): BookRecord {
         return BookRecord(model.id, model.title, model.author, model.releaseDate)
     }
