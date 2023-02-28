@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping("book")
-@CrossOrigin(origins = ["http://localhost:8081"], allowCredentials = "true")
 class BookController(private val service: BookService) {
     @GetMapping("list")
     fun getList(): GetBookListResponse {
