@@ -26,7 +26,8 @@ services:
       - ./db/sql:/docker-entrypoint-initdb.d
   redis:
     image: "redis:latest"
+    container_name: redis
     ports:
       - "6379:6379"
     volumes:
-      - "./redis/data:/data"
+      - ./redis/data:/data
